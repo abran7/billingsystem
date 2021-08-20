@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment: 1
+  paymentdate: 2021-08-20
+
+two:
+  payment: 1
+  paymentdate: 2021-08-20
