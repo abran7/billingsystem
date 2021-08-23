@@ -16,6 +16,10 @@ height: 100%;
 align-content: center;
 }
 
+.card-body {
+
+margin-top: -20px
+}
 .card{
 height: 380px;
 margin-top: auto;
@@ -165,7 +169,12 @@ margin-left: 4px;
 					</div>
 				</form>
 			</div>
-	
+			<div class="card-footer">
+			<div class="d-flex justify-content-center links">
+				Already Registered?<a  <%=link_to "Sign In", root_path %> </a>
+			</div>
+			
+		</div>
 		</div>
 	</div>
 </div>

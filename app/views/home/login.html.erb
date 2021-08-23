@@ -1,4 +1,15 @@
 
+<div class="d-flex align-items-center justify-content-centre">
+	<h1>Welcome to CarSecure</h1>
+
+	<% if Current.user%>
+		logged in as <%= Current.user.email%>
+
+		<%= button_to "Logout", logout_path, method: :delete%>
+	<%end%>
+</div>
+
+
 <style>
 
 @import url('https://fonts.googleapis.com/css?family=Numans');

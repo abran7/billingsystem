@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_134520) do
+ActiveRecord::Schema.define(version: 2021_08_23_143612) do
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.string "author_type"
+    t.integer "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
 
   create_table "features", force: :cascade do |t|
     t.string "name"
@@ -19,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_08_20_134520) do
     t.integer "maxlimit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "plan_id", null: false
+    t.index ["plan_id"], name: "index_features_on_plan_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -26,6 +42,8 @@ ActiveRecord::Schema.define(version: 2021_08_20_134520) do
     t.integer "monthlyfees"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "subscribe_id"
+    t.index ["subscribe_id"], name: "index_plans_on_subscribe_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -39,6 +57,8 @@ ActiveRecord::Schema.define(version: 2021_08_20_134520) do
     t.date "billingday"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_subscribes_on_user_id"
   end
 
   create_table "usages", force: :cascade do |t|
@@ -50,10 +70,13 @@ ActiveRecord::Schema.define(version: 2021_08_20_134520) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password"
-    t.string "type"
+    t.string "password_digest"
+    t.string "user_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "features", "plans"
+  add_foreign_key "plans", "subscribes"
+  add_foreign_key "subscribes", "users"
 end
