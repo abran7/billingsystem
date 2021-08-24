@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_143612) do
+ActiveRecord::Schema.define(version: 2021_08_23_163939) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2021_08_23_143612) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.integer "plan_id"
+    t.index ["plan_id"], name: "index_subscribes_on_plan_id"
     t.index ["user_id"], name: "index_subscribes_on_user_id"
   end
 
@@ -78,5 +80,6 @@ ActiveRecord::Schema.define(version: 2021_08_23_143612) do
 
   add_foreign_key "features", "plans"
   add_foreign_key "plans", "subscribes"
+  add_foreign_key "subscribes", "plans"
   add_foreign_key "subscribes", "users"
 end
