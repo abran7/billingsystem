@@ -1,5 +1,4 @@
 ActiveAdmin.register Record do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -10,9 +9,8 @@ ActiveAdmin.register Record do
   # or
   #
   permit_params do
-    permitted = [:payment, :paymentdate]
-    permitted << :other if params[:action] == 'create' 
+    permitted = %i[payment paymentdate]
+    permitted << :other if params[:action] == 'create'
     permitted
   end
-  
 end

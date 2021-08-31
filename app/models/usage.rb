@@ -1,3 +1,3 @@
 class Usage < ApplicationRecord
-    validates :unitused, presence: true
+  validates :unitused, presence: true
 end

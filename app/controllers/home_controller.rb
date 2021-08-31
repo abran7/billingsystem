@@ -1,21 +1,27 @@
 class HomeController < ApplicationController
+  
 
   def login
-    if session[:user_id]
-      @user = User.find_by(id: session[:user_id])
-    end
-  end
-  def logout
-
+    @user = User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
-  def admin
+  def logout; end
+
+  def admin; end
+  
+
+
+
+  def plan
+    @plans = Plan.includes(:features).all
+    
   end
+  
 
-  private
 
-  def find_user
-    @user = User.find_by(Current.id)
+
+  def home
   end
-
+  
+  
 end

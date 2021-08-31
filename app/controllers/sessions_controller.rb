@@ -1,5 +1,6 @@
-class SessionsController < ActionController::Base
-    def new
+class SessionsController < ApplicationController
+    
+    def signin
     end
 
     def create
@@ -9,7 +10,7 @@ class SessionsController < ActionController::Base
             redirect_to root_path, notice: "logged in successfully"
         else
             
-            flash[:alert] = "Invalid email or pass"
+            flash.alert = "User not found."
             render  :new
         end
     end
@@ -19,7 +20,7 @@ class SessionsController < ActionController::Base
     
     def destroy #dpesnot require view
         session[:user_id] = nil
-        redirect_to root_path, notice: "logged out"
+        redirect_to root_path, notice: "logged out Successfully"
     end
 
 end

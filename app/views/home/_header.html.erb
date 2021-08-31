@@ -1,64 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<!-- Just an image -->
-<nav class="navbar navbar-dark bg-dark">
-  <span class="navbar-brand mb-0 h1">Car Secure</span>
-</nav>
-  <div class="container-fluid">
-  <%= link_to 'Home', root_path , class:"navbar-brand" %>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+<style>
 
-          
-          <%=link_to "Plans", root_path, class:"nav-link active" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to 'Register' , home_signup_path, class: "nav-link" %>
-         
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+/* Style the navigation bar */
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
 
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-      <% if Current.user%>
-      <li class="navbar navbar-dark bg-dark">
-		    <span><%= Current.user.email%></span>
-      </li>
-      <li class="container-fluid">
-		    <%= button_to "Logout", logout_path, method: :delete ,class: "btn btn-primary" %> 
-      </li>
-      <%else%>
-      <div>
-       <li class="container-fluid">
-		    <%= link_to "Sign Up", signup_path, class: "btn btn-primary" %>
-      </li>
-      </div>
-      <div>
-         <li class="container-fluid">
-		    <%= link_to "Sign In", signin_path, class: "btn btn-primary" %>
-      </li>
-      </div>
-      <%end%>
-      </ul>
+/* Navbar links */
+.navbar a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
 
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: #000;
+}
 
-    </div>
-  </div>
-</nav>
+/* Current/active navbar link */
+.active {
+  background-color: #04AA6D;
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+<!-- Load an icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="navbar"> 
+  <span href="#" class="navbar-left mb-0 h4"><img src="/assets/secure.svg"   width="80" height="30" >CarSecure</span>
+  <span class="navbar-left mb-0 mx-auto h4"></span>
+  <a href= '/home'><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href='/home/plan'><i class="fa fa-fw fa-book"></i> Plans</a>
+  <% if userr_signed_in? %>
+   <a href= '/subscribe' ><i class="fa fa-fw fa-check-square"></i>Subscriptions</a>
+  <a href= '/userrs/edit' ><i class="fa fa-fw fa-pencil-square-o"></i> Edit Profile</a>
+  <a href= '/userrs/sign_out', data-method = "delete" ><i class="fa fa-fw  fa-sign-out"></i> Sign Out</a>
+  <a class="dropbtn"><%= image_tag user_avatar(current_userr, 20) , class: "rounded-circle" %></a>
+  <%else%>  
+  <a href= '/userrs/sign_up' ><i class="fa fa-fw fa-user-plus"></i> Sign Up</a>
+  <a href= '/userrs/sign_in' ><i class="fa fa-fw fa-user"></i> Login</a>
+  <%end%>
+</div>
